@@ -1,4 +1,6 @@
 ﻿using DAL;
+using DAL.IRepositories;
+using DAL.Repositories;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +28,6 @@ namespace LibraryProjectClient
             Configuration = builder.Build();
             ConfigureServices();
         }
-
         private void ConfigureServices()
         {
             SimpleIoc.Default.Register(() =>
@@ -35,6 +36,7 @@ namespace LibraryProjectClient
                 builder.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
                 return new BookStoreContext(builder.Options);
             });
+            SimpleIoc.Default.Register<IBookStoreRepository, BookStoreRepository>();
         }
     }
 }

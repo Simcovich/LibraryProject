@@ -10,7 +10,7 @@ namespace Shared.Models
         public AbstractItem Item { get; set; }
         [ForeignKey("AbstractItem")]
         public int ItemId { get; set; }
-        public Genre Id { get; set; }
+        public Genre Genre { get; set; }
         [ForeignKey("Genre")]
         public int GenreId { get; set; }
     }

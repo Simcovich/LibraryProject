@@ -14,9 +14,7 @@ namespace Shared.Models
         public decimal Price { get; set; }
         [NotMapped]
         public double Discount { get; set; }
-        [Required,ForeignKey("Genre")]
-        public Genre Genre { get; set; }
-        [Required, ForeignKey("Publisher")]
+        public ICollection<AbstractItemGenre> ItemGenres { get; set; }
         public Publisher Publisher { get; set; }
         [DataType(DataType.Date)]
         public DateTime PrintDate { get; set; }

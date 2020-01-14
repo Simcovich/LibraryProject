@@ -1,5 +1,8 @@
 ﻿using DAL;
+using DAL.IRepositories;
+using DAL.Repositories;
 using GalaSoft.MvvmLight.Ioc;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +25,11 @@ namespace LibraryProjectClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         public MainWindow()
         {
             InitializeComponent();
-            var me = SimpleIoc.Default.GetInstance<BookStoreContext>();
+            var rep = SimpleIoc.Default.GetInstance<IBookStoreRepository>();
+            Author auth = rep.GetAuthorRepository.AddAuthor(new Author() { Name = "Asaf", PenName = "Simco" });
         }
     }
 }

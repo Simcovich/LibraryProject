@@ -7,6 +7,6 @@ namespace Shared.Models
     {
         [DataType(DataType.Text),Required]
         public string Name { get; set; }
-        public ICollection<AbstractItemGenre> AbstractItemGenres { get; set; }
+        public ICollection<AbstractItemGenre> ItemGenres { get; set; }
     }
 }
