@@ -9,9 +9,8 @@ namespace DAL.IRepositories
 {
     public interface IBookRepository
     {
-        Book AddBook(Book book);
-        void UpdateBook(Book book);
-        IEnumerable<Book> GetAllBooks();
-        Book GetBookById(int id);
+        Task<Book> AddBookAsync(Book book);
+        Task UpdateBookAsync(Book book);
+        Task<Book> GetBookByIdAsync(int id);
     }
 }

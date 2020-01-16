@@ -4,9 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryProjectClient"
+        xmlns:local1="clr-namespace:LibraryProjectClient.Pages"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
 
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Command="{Binding ResourcesCommand}">
+                <MenuItem.Header>Books</MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="MainFrame"></Frame>
+    </DockPanel>
 </Window>

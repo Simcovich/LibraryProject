@@ -63,12 +63,7 @@ namespace BookStoreDAL.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
-
                     b.HasKey("ItemId", "GenreId");
-
-                    b.HasIndex("BookId");
 
                     b.HasIndex("GenreId");
 
@@ -134,6 +129,9 @@ namespace BookStoreDAL.Migrations
                     b.Property<int>("AuthorFK")
                         .HasColumnType("int");
 
+                    b.Property<string>("ISBN")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasIndex("AuthorFK");
 
                     b.HasDiscriminator().HasValue("Book");
@@ -162,10 +160,6 @@ namespace BookStoreDAL.Migrations
 
             modelBuilder.Entity("Shared.Models.AbstractItemGenre", b =>
                 {
-                    b.HasOne("Shared.Models.Book", null)
-                        .WithMany("AbstractItemGenres")
-                        .HasForeignKey("BookId");
-
                     b.HasOne("Shared.Models.Genre", "Genre")
                         .WithMany("ItemGenres")
                         .HasForeignKey("GenreId")

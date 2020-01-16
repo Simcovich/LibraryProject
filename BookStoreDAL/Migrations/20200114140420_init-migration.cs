@@ -60,6 +60,7 @@ namespace BookStoreDAL.Migrations
                     Description = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     AuthorFK = table.Column<int>(nullable: true),
+                    ISBN = table.Column<string>(nullable: true),
                     CopyNum = table.Column<int>(nullable: true),
                     ISSN = table.Column<string>(nullable: true)
                 },
@@ -85,18 +86,11 @@ namespace BookStoreDAL.Migrations
                 columns: table => new
                 {
                     ItemId = table.Column<int>(nullable: false),
-                    GenreId = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: true)
+                    GenreId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemGenres", x => new { x.ItemId, x.GenreId });
-                    table.ForeignKey(
-                        name: "FK_ItemGenres_Items_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Items",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ItemGenres_Genres_GenreId",
                         column: x => x.GenreId,
@@ -110,11 +104,6 @@ namespace BookStoreDAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ItemGenres_BookId",
-                table: "ItemGenres",
-                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ItemGenres_GenreId",
@@ -138,10 +127,10 @@ namespace BookStoreDAL.Migrations
                 name: "ItemGenres");
 
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "Genres");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Items");
 
             migrationBuilder.DropTable(
                 name: "Publishers");

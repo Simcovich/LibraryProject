@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryProjectClient", "LibraryProjectClient\LibraryProjectClient.csproj", "{A00BE617-3038-4B13-808B-B71202219123}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryProjectClient", "LibraryProjectClient\LibraryProjectClient.csproj", "{A00BE617-3038-4B13-808B-B71202219123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{26490109-7A5D-4839-93C1-83295BD14626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{26490109-7A5D-4839-93C1-83295BD14626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStoreDAL", "BookStoreDAL\BookStoreDAL.csproj", "{3728639A-ECA8-420C-AB78-694EE82CF8DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookStoreDAL", "BookStoreDAL\BookStoreDAL.csproj", "{3728639A-ECA8-420C-AB78-694EE82CF8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,26 @@ Global
 		{3728639A-ECA8-420C-AB78-694EE82CF8DB}.Release|x64.Build.0 = Release|Any CPU
 		{3728639A-ECA8-420C-AB78-694EE82CF8DB}.Release|x86.ActiveCfg = Release|Any CPU
 		{3728639A-ECA8-420C-AB78-694EE82CF8DB}.Release|x86.Build.0 = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|x64.Build.0 = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Debug|x86.Build.0 = Debug|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|ARM.Build.0 = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|ARM64.Build.0 = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|x64.ActiveCfg = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|x64.Build.0 = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B5755BC-CAFA-4C9C-88F8-8D2231DD0C6E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

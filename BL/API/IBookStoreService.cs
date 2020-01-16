@@ -1,14 +1,15 @@
 ﻿using Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.IRepositories
+namespace BL.API
 {
-    public interface IAuthorRepository
+    public interface IBookStoreService
     {
+        Task<Book> AddBookAsync(Book book);
         Task<Author> AddAuthorAsync(Author author);
+        Task<Journal> AddJournalAsync(Journal journal);
     }
 }

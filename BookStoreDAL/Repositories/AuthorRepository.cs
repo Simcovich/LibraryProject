@@ -1,5 +1,6 @@
 ﻿using DAL.IRepositories;
 using Shared.Models;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -11,9 +12,11 @@ namespace DAL.Repositories
             _context = context;
         }
 
-        public Author AddAuthor(Author author)
+        public async Task<Author> AddAuthorAsync(Author author)
         {
-            return _context.Add(author).Entity;
+            var authorEntity = _context.Add(author);
+            await _context.SaveChangesAsync();
+            return authorEntity.Entity;
         }
     }
 }

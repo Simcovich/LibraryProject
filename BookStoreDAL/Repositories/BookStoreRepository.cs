@@ -18,8 +18,8 @@ namespace DAL.Repositories
         public IAuthorRepository GetAuthorRepository => new AuthorRepository(_context);
         public IBookRepository GetBookRepository => new BookRepository(_context);
         public IDiscountRepository GetDiscountRepository => new DiscountRepository();
-        public IGenreRepository GetGenreRepository => new GenreRepository();
-        public IJournalRepository GetJournalRepository =>  new JournalRepository();
-        public IPublisherRepository GetPublisherReposiory =>  new PublisherReposiory();
+        public IGenreRepository GetGenreRepository => new GenreRepository(_context);
+        public IJournalRepository GetJournalRepository =>  new JournalRepository(_context);
+        public IPublisherRepository GetPublisherReposiory =>  new PublisherReposiory(_context);
     }
 }

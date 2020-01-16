@@ -11,6 +11,6 @@ namespace Shared.Models
         [Required,ForeignKey("Author")]
         public int AuthorFK { get; set; }
         public Author Author { get; set; }
-        public ICollection<AbstractItemGenre> AbstractItemGenres { get; set; }
+        public string ISBN { get; set; }
     }
 }

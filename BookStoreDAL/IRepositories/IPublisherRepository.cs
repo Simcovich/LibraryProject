@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace DAL.IRepositories
 {
     public interface IPublisherRepository
     {
+        Publisher AddPublisher(Publisher publisher);
     }
 }
