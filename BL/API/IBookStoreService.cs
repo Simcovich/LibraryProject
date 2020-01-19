@@ -11,5 +11,8 @@ namespace BL.API
         Task<Book> AddBookAsync(Book book);
         Task<Author> AddAuthorAsync(Author author);
         Task<Journal> AddJournalAsync(Journal journal);
+        Task<List<Genre>> GetAllGenresAsync();
+        Task<List<Author>> GetAllAuthorsAsync();
+        Task<List<Publisher>> GetAllPublishersAsync();
     }
 }

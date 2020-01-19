@@ -1,5 +1,8 @@
 ﻿using DAL.IRepositories;
 using Shared.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -15,6 +18,11 @@ namespace DAL.Repositories
             var publisherEntity = _context.Add(publisher);
             _context.SaveChanges();
             return publisherEntity.Entity;
+        }
+
+        public Task<IEnumerable<Publisher>> GetPublishersAsync()
+        {
+            return Task.Run(() => _context.Publishers.AsEnumerable());
         }
     }
 }

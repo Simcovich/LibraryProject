@@ -10,5 +10,6 @@ namespace DAL.IRepositories
     public interface IAuthorRepository
     {
         Task<Author> AddAuthorAsync(Author author);
+        Task<IEnumerable<Author>> GetAuthorsAsync();
     }
 }

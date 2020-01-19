@@ -20,5 +20,6 @@ namespace Shared.Models
         public DateTime PrintDate { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        public int Stock { get; set; }
     }
 }

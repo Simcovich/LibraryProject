@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,9 +19,28 @@ namespace LibraryProjectClient.Views
     /// </summary>
     public partial class BookCreateUserControl : UserControl
     {
+
         public BookCreateUserControl()
         {
             InitializeComponent();
+        }
+        private void TextBox_PreviewDecimalTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsDecimalTextAllowed(e.Text);
+        }
+
+        private bool IsDecimalTextAllowed(string text)
+        {
+            return !decimalRegex.IsMatch(text);
+        }
+
+        private void TextBox_PreviewIntTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsIntTextAllowed(e.Text);
+        }
+        private bool IsIntTextAllowed(string text)
+        {
+            return !intRegex.IsMatch(text);
         }
     }
 }

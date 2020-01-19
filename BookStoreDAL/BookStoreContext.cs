@@ -32,6 +32,14 @@ namespace DAL
                 .HasOne(ig => ig.Genre)
                 .WithMany(g => g.ItemGenres)
                 .HasForeignKey(ig => ig.GenreId);
+            modelBuilder.Entity<Genre>().HasData(
+                new Genre() {Id=1, Name = "Action" },
+                new Genre() {Id=2, Name = "Comedy" }
+            );
+            modelBuilder.Entity<Publisher>().HasData(
+                new Publisher() { Id = 1, Name = "Ran Forrest" });
+            modelBuilder.Entity<Author>().HasData(
+                new Author() { Id = 1, Name = "Jon Doe", PenName="JD"});
         }
     }
 

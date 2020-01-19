@@ -6,5 +6,9 @@ namespace LibraryProjectClient.ViewModels
 {
     public class BookListViewModel
     {
+        public BookListViewModel()
+        {
+
+        }
     }
 }
