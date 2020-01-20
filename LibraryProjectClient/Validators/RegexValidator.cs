@@ -13,7 +13,7 @@ namespace LibraryProjectClient.Validators
         private Regex intRegex = new Regex(("[^0-9]+"));
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

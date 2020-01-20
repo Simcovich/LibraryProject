@@ -31,7 +31,8 @@ namespace LibraryProjectClient.Views
 
         private bool IsDecimalTextAllowed(string text)
         {
-            return !decimalRegex.IsMatch(text);
+            //return !decimalRegex.IsMatch(text);
+            throw new NotImplementedException();
         }
 
         private void TextBox_PreviewIntTextInput(object sender, TextCompositionEventArgs e)
@@ -40,7 +41,7 @@ namespace LibraryProjectClient.Views
         }
         private bool IsIntTextAllowed(string text)
         {
-            return !intRegex.IsMatch(text);
+            throw new NotImplementedException();
         }
     }
 }

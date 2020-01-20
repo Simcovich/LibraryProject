@@ -10,5 +10,6 @@ namespace DAL.IRepositories
     public interface IJournalRepository
     {
         Task<Journal> AddJournalAsync(Journal Journal);
+        Task<IEnumerable<Journal>> GetAllJournalsAsync();
     }
 }

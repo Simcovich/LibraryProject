@@ -9,7 +9,7 @@ namespace DAL.IRepositories
 {
     public interface IPublisherRepository
     {
-        Publisher AddPublisher(Publisher publisher);
+        Task<Publisher> AddPublisherAsync(Publisher publisher);
         Task<IEnumerable<Publisher>> GetPublishersAsync();
     }
 }

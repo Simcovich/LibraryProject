@@ -48,6 +48,9 @@ namespace LibraryProjectClient
             var navigationService = new NavigationService();
             navigationService.Configure("Books", new Uri("./Pages/Books.xaml",UriKind.Relative));
             navigationService.Configure("Journals", new Uri("./Pages/Journals.xaml",UriKind.Relative));
+            navigationService.Configure("AddPublisher", new Uri("./Pages/AddPublisher.xaml", UriKind.Relative));
+            navigationService.Configure("AddGenre", new Uri("./Pages/AddGenre.xaml", UriKind.Relative));
+            navigationService.Configure("AddAuthor", new Uri("./Pages/AddAuthor.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IModernNavigationService>(() => navigationService);
         }
 

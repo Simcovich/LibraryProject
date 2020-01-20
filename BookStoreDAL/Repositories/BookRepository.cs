@@ -21,6 +21,12 @@ namespace DAL.Repositories
             return bookEntity.Entity;
         }
 
+        public Task<IEnumerable<Book>> GetAllBooksAsync()
+        {
+            var books = Task.Run(() => _context.Books.Include(b=>b.ItemGenres).ThenInclude(ig=>ig.Genre).AsEnumerable());
+            return books;
+        }
+
         public Task<Book> GetBookByIdAsync(int id)
         {
             throw new System.NotImplementedException();

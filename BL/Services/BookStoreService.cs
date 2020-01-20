@@ -35,11 +35,22 @@ namespace BL.Services
             var newJournal = await _repo.GetJournalRepository.AddJournalAsync(journal);
             return newJournal;
         }
+        public async Task<List<Journal>> GetAllJournalsAsync()
+        {
+            var journals = await _repo.GetJournalRepository.GetAllJournalsAsync();
+            return journals.ToList();
+        }
 
         public async Task<List<Author>> GetAllAuthorsAsync()
         {
             var authors = await _repo.GetAuthorRepository.GetAuthorsAsync();
             return authors.ToList();
+        }
+
+        public async Task<List<Book>> GetAllBooksAsync()
+        {
+            var books = await _repo.GetBookRepository.GetAllBooksAsync();
+            return books.ToList();
         }
 
         public async Task<List<Genre>> GetAllGenresAsync()
@@ -52,6 +63,16 @@ namespace BL.Services
         {
             var publishers = await _repo.GetPublisherReposiory.GetPublishersAsync();
             return publishers.ToList();
+        }
+
+        public async Task<Genre> AddGenreAsync(Genre genre)
+        {
+            return await _repo.GetGenreRepository.AddGenreAsync(genre);
+        }
+
+        public async Task<Publisher> AddPublisherAsync(Publisher publisher)
+        {
+            return await _repo.GetPublisherReposiory.AddPublisherAsync(publisher);
         }
     }
 }

@@ -13,12 +13,13 @@ namespace DAL.Repositories
         {
             _context = context;
         }
-        public Publisher AddPublisher(Publisher publisher)
+        public async Task<Publisher> AddPublisherAsync(Publisher publisher)
         {
             var publisherEntity = _context.Add(publisher);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return publisherEntity.Entity;
         }
+
 
         public Task<IEnumerable<Publisher>> GetPublishersAsync()
         {

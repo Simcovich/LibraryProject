@@ -13,10 +13,10 @@ namespace DAL.Repositories
         {
             _context = context;
         }
-        public Genre AddGenre(Genre genre)
+        public async Task<Genre> AddGenreAsync(Genre genre)
         {
             var genreEntity = _context.Add(genre);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return genreEntity.Entity;
         }
         public Task<IEnumerable<Genre>> GetGenresAsync()

@@ -1,5 +1,8 @@
 ﻿using DAL.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using Shared.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -16,6 +19,12 @@ namespace DAL.Repositories
             var journalEntity = _context.Add(journal);
             await _context.SaveChangesAsync();
             return journalEntity.Entity;
+        }
+
+        public Task<IEnumerable<Journal>> GetAllJournalsAsync()
+        {
+            var journals = Task.Run(() => _context.Journals.Include(j=> j.ItemGenres).ThenInclude(ig=>ig.Genre).AsEnumerable());
+            return journals;
         }
     }
 }

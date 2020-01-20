@@ -4,11 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LibraryProjectClient.Pages"
+      xmlns:local1="clr-namespace:LibraryProjectClient.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Journals">
 
-    <Grid>
-        <TextBlock Text="Hello" Background="White"/>
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <TextBlock DockPanel.Dock="Top" Text="Journal Page" FontSize="30" TextAlignment="Center"/>
+        <TabControl TabStripPlacement="Top" Background="White" >
+            <TabItem Header="Create Journal">
+                <local1:JournalCreateUserControl/>
+            </TabItem>
+            <TabItem Header="Journal List">
+                <local1:JournalListUserControl/>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Page>

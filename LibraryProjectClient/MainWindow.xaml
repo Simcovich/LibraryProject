@@ -11,8 +11,20 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Command="{Binding ResourcesCommand}">
+            <MenuItem Command="{Binding BooksNavigationCommand}">
                 <MenuItem.Header>Books</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding JournalsNavigationCommand}">
+                <MenuItem.Header>Journals</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding AuthorNavigationCommand}">
+                <MenuItem.Header>Add Author</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding GenreNavigationCommand}">
+                <MenuItem.Header>Add Genre</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding PublisherNavigationCommand}">
+                <MenuItem.Header>Add Publisher</MenuItem.Header>
             </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame"></Frame>

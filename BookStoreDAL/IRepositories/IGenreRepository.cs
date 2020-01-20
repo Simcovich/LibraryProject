@@ -9,7 +9,7 @@ namespace DAL.IRepositories
 {
     public interface IGenreRepository
     {
-        Genre AddGenre(Genre genre);
+        Task<Genre> AddGenreAsync(Genre genre);
         Task<IEnumerable<Genre>> GetGenresAsync();
     }
 }
