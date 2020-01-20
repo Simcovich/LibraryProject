@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 
 namespace LibraryProjectClient.ViewModels
 {
@@ -106,6 +107,15 @@ namespace LibraryProjectClient.ViewModels
                     Messenger.Default.Send(newBook);
                     ResetForm();
                     _modernNavigationService.NavigateTo("Books");
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var item in validationResults)
+                    {
+                        sb.Append($"{item.ErrorMessage}\n");
+                    }
+                    _messageService.ShowMessage(sb.ToString());
                 }
             }
             catch (Exception e)

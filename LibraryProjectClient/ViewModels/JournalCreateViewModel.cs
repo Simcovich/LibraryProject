@@ -4,8 +4,11 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Shared.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Windows;
 
 namespace LibraryProjectClient.ViewModels
@@ -87,10 +90,24 @@ namespace LibraryProjectClient.ViewModels
 
             try
             {
-                await _journalService.AddJournalAsync(newJournal);
-                Messenger.Default.Send(newJournal);
-                ResetForm();
-                _modernNavigationService.NavigateTo("Journals");
+                var validationResults = new List<ValidationResult>();
+                Validator.TryValidateObject(newJournal, new ValidationContext(newJournal), validationResults);
+                if (validationResults.Count == 0)
+                {
+                    await _journalService.AddJournalAsync(newJournal);
+                    Messenger.Default.Send(newJournal);
+                    ResetForm();
+                    _modernNavigationService.NavigateTo("Journals");
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var item in validationResults)
+                    {
+                        sb.Append($"{item.ErrorMessage}\n");
+                    }
+                    _messageService.ShowMessage(sb.ToString());
+                }
             }
             catch (Exception e)
             {

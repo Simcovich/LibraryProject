@@ -5,10 +5,10 @@ namespace Shared.Models
 {
     public class Book : AbstractItem
     {
-        [Required, ForeignKey("Author")]
         public int AuthorFK { get; set; }
-
+        [Required]
         public Author Author { get; set; }
+        [Required, DataType(DataType.Text)]
         public string ISBN { get; set; }
     }
 }

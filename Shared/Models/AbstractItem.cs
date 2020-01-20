@@ -17,14 +17,15 @@ namespace Shared.Models
         public double Discount { get; set; }
 
         public ICollection<AbstractItemGenre> ItemGenres { get; set; }
+        [Required]
         public Publisher Publisher { get; set; }
 
-        [DataType(DataType.Date)]
+        [Required,DataType(DataType.Date)]
         public DateTime PrintDate { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [Required,DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
+        [Required]
         public int Stock { get; set; }
     }
 }

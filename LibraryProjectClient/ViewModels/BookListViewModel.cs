@@ -17,14 +17,13 @@ namespace LibraryProjectClient.ViewModels
             Messenger.Default.Register<Book>(this, OnMessage);
             GetBooks();
         }
-
         private void OnMessage(Book newBook)
         {
             Books.Add(newBook);
         }
-
         private async void GetBooks()
         {
+            
             Books = new ObservableCollection<Book>(await _service.GetAllBooksAsync());
         }
 
