@@ -6,6 +6,7 @@ namespace Shared.Models
     {
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string PenName { get; set; }
     }

@@ -9,6 +9,7 @@ namespace DAL.Repositories
     public class AuthorRepository : IAuthorRepository
     {
         private BookStoreContext _context;
+
         public AuthorRepository(BookStoreContext context)
         {
             _context = context;
@@ -24,6 +25,12 @@ namespace DAL.Repositories
         public Task<IEnumerable<Author>> GetAuthorsAsync()
         {
             return Task.Run(() => _context.Authors.AsEnumerable());
+        }
+
+        public async Task UpdateAuthorAsync(Author author)
+        {
+            _context.Authors.Update(author);
+            await _context.SaveChangesAsync();
         }
     }
 }

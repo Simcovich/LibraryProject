@@ -9,11 +9,13 @@ namespace DAL.Repositories
 {
     public class JournalRepository : IJournalRepository
     {
-        BookStoreContext _context;
+        private BookStoreContext _context;
+
         public JournalRepository(BookStoreContext context)
         {
             _context = context;
         }
+
         public async Task<Journal> AddJournalAsync(Journal journal)
         {
             var journalEntity = _context.Add(journal);
@@ -23,8 +25,14 @@ namespace DAL.Repositories
 
         public Task<IEnumerable<Journal>> GetAllJournalsAsync()
         {
-            var journals = Task.Run(() => _context.Journals.Include(j=> j.ItemGenres).ThenInclude(ig=>ig.Genre).AsEnumerable());
+            var journals = Task.Run(() => _context.Journals.Include(j => j.ItemGenres).ThenInclude(ig => ig.Genre).AsEnumerable());
             return journals;
+        }
+
+        public async Task UpdateJournalAsync(Journal journal)
+        {
+            _context.Journals.Update(journal);
+            await _context.SaveChangesAsync();
         }
     }
 }

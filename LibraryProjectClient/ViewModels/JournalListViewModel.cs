@@ -1,23 +1,20 @@
 ﻿using BL.API;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using LibraryProjectClient.Pages;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
 namespace LibraryProjectClient.ViewModels
 {
     public class JournalListViewModel : ViewModelBase
     {
-        private IBookStoreService _service;
+        private IJournalService _service;
         private ObservableCollection<Journal> journals;
         public virtual Journal ReceivedJournal { get; protected set; }
-        public JournalListViewModel(IBookStoreService service)
+
+        public JournalListViewModel(IJournalService service)
         {
-            _service = service; 
+            _service = service;
             Messenger.Default.Register<Journal>(this, OnMessage);
             GetJournals();
         }

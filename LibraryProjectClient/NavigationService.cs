@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,8 +23,8 @@ namespace LibraryProjectClient
             get;
             private set;
         }
-        public object Parameter { get; private set; }
 
+        public object Parameter { get; private set; }
 
         public void GoBack()
         {
@@ -35,6 +34,7 @@ namespace LibraryProjectClient
                 NavigateTo(_historic.Last(), null);
             }
         }
+
         public void NavigateTo(string pageKey)
         {
             NavigateTo(pageKey, null);

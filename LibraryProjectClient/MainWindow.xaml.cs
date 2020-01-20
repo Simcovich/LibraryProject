@@ -1,6 +1,4 @@
-﻿using BL.API;
-using GalaSoft.MvvmLight.Ioc;
-using System.Windows;
+﻿using System.Windows;
 
 namespace LibraryProjectClient
 {

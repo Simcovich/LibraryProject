@@ -4,25 +4,46 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
+using System.Windows;
 
 namespace LibraryProjectClient.ViewModels
 {
     public class JournalCreateViewModel : ViewModelBase
     {
-        IBookStoreService _service;
-        public JournalCreateViewModel(IBookStoreService service)
+        private IJournalService _journalService;
+        private IPublisherService _publisherService;
+        private IGenreService _genreService;
+        private ObservableCollection<Genre> genreList;
+        private ObservableCollection<Publisher> publisherList;
+        private string title;
+        private DateTime printDate;
+        private int copyNum;
+        private Publisher publisher;
+        private string description;
+        private string iSSN;
+        private int stock;
+        private decimal price;
+        private Genre[] genres;
+        private IModernNavigationService _modernNavigationService;
+        private IMessageService _messageService;
+        public JournalCreateViewModel(IJournalService journalService, IPublisherService publisherService, IGenreService genreService, 
+            IModernNavigationService modernNavigationService,IMessageService messageService)
         {
-            _service = service;
+            _journalService = journalService;
+            _publisherService = publisherService;
+            _genreService = genreService;
             PrintDate = DateTime.Now;
             Genres = new Genre[3];
             GetGenresAsync();
             GetPublishersAsync();
             Command = new RelayCommand(AddJournal);
+            _modernNavigationService = modernNavigationService;
+            _messageService = messageService;
+
         }
+
         public ObservableCollection<Genre> GenreList { get => genreList; set => Set(ref genreList, value); }
         public ObservableCollection<Publisher> PublisherList { get => publisherList; set => Set(ref publisherList, value); }
         public string Title { get => title; set => Set(ref title, value); }
@@ -35,25 +56,17 @@ namespace LibraryProjectClient.ViewModels
         public decimal Price { get => price; set => Set(ref price, value); }
         public Genre[] Genres { get => genres; set => Set(ref genres, value); }
         public RelayCommand Command { get; set; }
-        private ObservableCollection<Genre> genreList;
-        private ObservableCollection<Publisher> publisherList;
-        private string title;
-        private DateTime printDate;
-        private int copyNum;
-        private Publisher publisher;
-        private string description;
-        private string iSSN;
-        private int stock;
-        private decimal price;
-        private Genre[] genres;
+
         private async void GetPublishersAsync()
         {
-            PublisherList = new ObservableCollection<Publisher>(await _service.GetAllPublishersAsync());
+            PublisherList = new ObservableCollection<Publisher>(await _publisherService.GetAllPublishersAsync());
         }
+
         private async void GetGenresAsync()
         {
-            GenreList = new ObservableCollection<Genre>(await _service.GetAllGenresAsync());
+            GenreList = new ObservableCollection<Genre>(await _genreService.GetAllGenresAsync());
         }
+
         private async void AddJournal()
         {
             var itemgenres = Genres
@@ -72,9 +85,17 @@ namespace LibraryProjectClient.ViewModels
                 Title = Title
             };
 
-            await _service.AddJournalAsync(newJournal);
-            Messenger.Default.Send(newJournal);
-            ResetForm();
+            try
+            {
+                await _journalService.AddJournalAsync(newJournal);
+                Messenger.Default.Send(newJournal);
+                ResetForm();
+                _modernNavigationService.NavigateTo("Journals");
+            }
+            catch (Exception e)
+            {
+                _messageService.ShowMessage(e.InnerException.Message);
+            }
         }
         private void ResetForm()
         {

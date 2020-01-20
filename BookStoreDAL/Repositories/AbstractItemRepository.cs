@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DAL.Repositories
 {
-    internal class AbstractItemRepostiry : IAbstractItemRepository
+    public class AbstractItemRepository : IAbstractItemRepository
     {
         public IEnumerable<AbstractItem> GetAllItems()
         {

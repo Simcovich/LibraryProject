@@ -2,7 +2,7 @@
 
 namespace DAL.Repositories
 {
-    internal class DiscountRepository : IDiscountRepository
+    public class DiscountRepository : IDiscountRepository
     {
     }
 }

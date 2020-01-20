@@ -4,10 +4,8 @@ using DAL;
 using DAL.IRepositories;
 using DAL.Repositories;
 using GalaSoft.MvvmLight.Ioc;
-using LibraryProjectClient.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using System;
 using System.IO;
@@ -28,6 +26,7 @@ namespace LibraryProjectClient
             Configuration = builder.Build();
             ConfigureServices();
         }
+
         private void ConfigureServices()
         {
             SimpleIoc.Default.Register(() =>
@@ -36,24 +35,38 @@ namespace LibraryProjectClient
                 builder.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
                 return new BookStoreContext(builder.Options);
             });
-            SimpleIoc.Default.Register<IBookStoreRepository, BookStoreRepository>();
-            SimpleIoc.Default.Register<IBookStoreService, BookStoreService>();
+            SimpleIoc.Default.Register<IBookRepository, BookRepository>();
+            SimpleIoc.Default.Register<IAuthorRepository, AuthorRepository>();
+            SimpleIoc.Default.Register<IGenreRepository, GenreRepository>();
+            SimpleIoc.Default.Register<IAbstractItemRepository, AbstractItemRepository>();
+            SimpleIoc.Default.Register<IDiscountRepository, DiscountRepository>();
+            SimpleIoc.Default.Register<IPublisherRepository, PublisherReposiory>();
+            SimpleIoc.Default.Register<IJournalRepository, JournalRepository>();
+            SimpleIoc.Default.Register<IBookService, BookService>();
+            SimpleIoc.Default.Register<IAuthorService, AuthorService>();
+            SimpleIoc.Default.Register<IGenreService, GenreService>();
+            SimpleIoc.Default.Register<ISearchService, SearchService>();
+            //  SimpleIoc.Default.Register <IDiscountService,DiscountService> ();
+            SimpleIoc.Default.Register<IPublisherService, PublisherService>();
+            SimpleIoc.Default.Register<IJournalService, JournalService>();
+            SimpleIoc.Default.Register<IMessageService, MessageService>();
+
             SetupNavigation();
             ConfigureLogger();
         }
 
-
         private void SetupNavigation()
         {
             var navigationService = new NavigationService();
-            navigationService.Configure("Books", new Uri("./Pages/Books.xaml",UriKind.Relative));
-            navigationService.Configure("Journals", new Uri("./Pages/Journals.xaml",UriKind.Relative));
+            navigationService.Configure("Books", new Uri("./Pages/Books.xaml", UriKind.Relative));
+            navigationService.Configure("Journals", new Uri("./Pages/Journals.xaml", UriKind.Relative));
             navigationService.Configure("AddPublisher", new Uri("./Pages/AddPublisher.xaml", UriKind.Relative));
             navigationService.Configure("AddGenre", new Uri("./Pages/AddGenre.xaml", UriKind.Relative));
             navigationService.Configure("AddAuthor", new Uri("./Pages/AddAuthor.xaml", UriKind.Relative));
+            navigationService.Configure("AddBook", new Uri("./Pages/AddBook.xaml", UriKind.Relative));
+            navigationService.Configure("AddJournal", new Uri("./Pages/AddJournal.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IModernNavigationService>(() => navigationService);
         }
-
         private void ConfigureLogger()
         {
             var log = new LoggerConfiguration().WriteTo.File("./LogFiles/log-file.txt").CreateLogger();

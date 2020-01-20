@@ -10,10 +10,12 @@ namespace DAL.Repositories
     public class BookRepository : IBookRepository
     {
         private BookStoreContext _context;
+
         public BookRepository(BookStoreContext context)
         {
             _context = context;
         }
+
         public async Task<Book> AddBookAsync(Book book)
         {
             var bookEntity = _context.Add(book);
@@ -23,7 +25,7 @@ namespace DAL.Repositories
 
         public Task<IEnumerable<Book>> GetAllBooksAsync()
         {
-            var books = Task.Run(() => _context.Books.Include(b=>b.ItemGenres).ThenInclude(ig=>ig.Genre).AsEnumerable());
+            var books = Task.Run(() => _context.Books.Include(b => b.ItemGenres).ThenInclude(ig => ig.Genre).AsEnumerable());
             return books;
         }
 
@@ -32,9 +34,10 @@ namespace DAL.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task UpdateBookAsync(Book book)
+        public async Task UpdateBookAsync(Book book)
         {
-            throw new System.NotImplementedException();
+            _context.Books.Update(book);
+            await _context.SaveChangesAsync();
         }
     }
 }

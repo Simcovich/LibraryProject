@@ -6,28 +6,17 @@ using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace LibraryProjectClient.ViewModels
 {
     public class BookCreateViewModel : ViewModelBase
     {
-        public BookCreateViewModel(IBookStoreService service)
-        {
-            _service = service;
-            PrintDate = DateTime.Now;
-            Genres = new Genre[3];
-            GetGenresAsync();
-            GetAuthorsAsync();
-            GetPublishersAsync();
-            Command = new RelayCommand(AddBook);
-        }
-        public ObservableCollection<Genre> GenreList { get => genreList; set => Set(ref genreList, value); }
-        public ObservableCollection<Author> AuthorList { get => authorList; set => Set(ref authorList, value); }
-        public ObservableCollection<Publisher> PublisherList { get => publisherList; set => Set(ref publisherList, value); }
-        public RelayCommand Command { get; set; }
-        private IBookStoreService _service;
+        private IBookService _bookService;
+        private IPublisherService _publisherService;
+        private IAuthorService _authorService;
+        private IGenreService _genreService;
         private ObservableCollection<Genre> genreList;
         private ObservableCollection<Author> authorList;
         private ObservableCollection<Publisher> publisherList;
@@ -40,6 +29,30 @@ namespace LibraryProjectClient.ViewModels
         private int stock;
         private decimal price;
         private Genre[] genres;
+        private IModernNavigationService _modernNavigationService;
+        private IMessageService _messageService;
+
+        public BookCreateViewModel(IBookService bookService, IPublisherService publisherService, IGenreService genreService, IAuthorService authorService,
+            IModernNavigationService modernNavigationService, IMessageService messageService)
+        {
+            _publisherService = publisherService;
+            _bookService = bookService;
+            _genreService = genreService;
+            _authorService = authorService;
+            PrintDate = DateTime.Now;
+            Genres = new Genre[3];
+            GetGenresAsync();
+            GetAuthorsAsync();
+            GetPublishersAsync();
+            Command = new RelayCommand(AddBook);
+            _modernNavigationService = modernNavigationService;
+            _messageService = messageService;
+        }
+
+        public ObservableCollection<Genre> GenreList { get => genreList; set => Set(ref genreList, value); }
+        public ObservableCollection<Author> AuthorList { get => authorList; set => Set(ref authorList, value); }
+        public ObservableCollection<Publisher> PublisherList { get => publisherList; set => Set(ref publisherList, value); }
+        public RelayCommand Command { get; set; }
 
         public string Title { get => title; set => Set(ref title, value); }
         public DateTime PrintDate { get => printDate; set => Set(ref printDate, value); }
@@ -50,26 +63,29 @@ namespace LibraryProjectClient.ViewModels
         public int Stock { get => stock; set => Set(ref stock, value); }
         public decimal Price { get => price; set => Set(ref price, value); }
         public Genre[] Genres { get => genres; set => Set(ref genres, value); }
+
         private async void GetPublishersAsync()
         {
-            PublisherList = new ObservableCollection<Publisher>(await _service.GetAllPublishersAsync());
+            PublisherList = new ObservableCollection<Publisher>(await _publisherService.GetAllPublishersAsync());
         }
 
         private async void GetAuthorsAsync()
         {
-            AuthorList = new ObservableCollection<Author>(await _service.GetAllAuthorsAsync());
+            AuthorList = new ObservableCollection<Author>(await _authorService.GetAllAuthorsAsync());
         }
 
         private async void GetGenresAsync()
         {
-            GenreList = new ObservableCollection<Genre>(await _service.GetAllGenresAsync());
+            GenreList = new ObservableCollection<Genre>(await _genreService.GetAllGenresAsync());
         }
+
         private async void AddBook()
         {
             var itemgenres = Genres
                 .Where(g => g != null)
                 .Select(g => new AbstractItemGenre() { GenreId = g.Id }).ToList();
-            var newBook = new Book() {
+            var newBook = new Book()
+            {
                 Author = Author,
                 Description = Description,
                 ISBN = ISBN,
@@ -80,11 +96,24 @@ namespace LibraryProjectClient.ViewModels
                 Stock = Stock,
                 Title = Title
             };
-
-            await _service.AddBookAsync(newBook);
-            Messenger.Default.Send(newBook);
-            ResetForm();
+            try
+            {
+                var validationResults = new List<ValidationResult>();
+                Validator.TryValidateObject(newBook, new ValidationContext(newBook), validationResults);
+                if (validationResults.Count == 0)
+                {
+                    await _bookService.AddBookAsync(newBook);
+                    Messenger.Default.Send(newBook);
+                    ResetForm();
+                    _modernNavigationService.NavigateTo("Books");
+                }
+            }
+            catch (Exception e)
+            {
+                _messageService.ShowMessage(e.InnerException.Message);
+            }
         }
+
         private void ResetForm()
         {
             Title = "";

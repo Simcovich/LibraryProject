@@ -6,6 +6,7 @@ namespace Shared.Models
     {
         [Required]
         public int CopyNum { get; set; }
+
         [Required]
         public string ISSN { get; set; }
     }

@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LibraryProjectClient.Views
 {
@@ -19,11 +9,11 @@ namespace LibraryProjectClient.Views
     /// </summary>
     public partial class BookCreateUserControl : UserControl
     {
-
         public BookCreateUserControl()
         {
             InitializeComponent();
         }
+
         private void TextBox_PreviewDecimalTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsDecimalTextAllowed(e.Text);
@@ -39,6 +29,7 @@ namespace LibraryProjectClient.Views
         {
             e.Handled = !IsIntTextAllowed(e.Text);
         }
+
         private bool IsIntTextAllowed(string text)
         {
             throw new NotImplementedException();

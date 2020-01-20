@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
 
 namespace LibraryProjectClient.ViewModels
 {
@@ -15,8 +14,8 @@ namespace LibraryProjectClient.ViewModels
             SimpleIoc.Default.Register<GenreCreateViewModel>();
             SimpleIoc.Default.Register<PublisherCreateViewModel>();
             SimpleIoc.Default.Register<AuthorCreateViewModel>();
-
         }
+
         public MainViewModel Main => SimpleIoc.Default.GetInstance<MainViewModel>();
         public BookCreateViewModel BookCreate => SimpleIoc.Default.GetInstance<BookCreateViewModel>();
         public BookListViewModel BookList => SimpleIoc.Default.GetInstance<BookListViewModel>();
@@ -25,6 +24,5 @@ namespace LibraryProjectClient.ViewModels
         public AuthorCreateViewModel AuthorCreate => SimpleIoc.Default.GetInstance<AuthorCreateViewModel>();
         public PublisherCreateViewModel PublisherCreate => SimpleIoc.Default.GetInstance<PublisherCreateViewModel>();
         public GenreCreateViewModel GenreCreate => SimpleIoc.Default.GetInstance<GenreCreateViewModel>();
-
     }
 }

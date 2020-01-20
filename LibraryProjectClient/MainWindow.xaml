@@ -26,6 +26,12 @@
             <MenuItem Command="{Binding PublisherNavigationCommand}">
                 <MenuItem.Header>Add Publisher</MenuItem.Header>
             </MenuItem>
+            <MenuItem Command="{Binding AddJournalNavigationCommand}">
+                <MenuItem.Header>Add Journal</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding AddBookNavigationCommand}">
+                <MenuItem.Header>Add Book</MenuItem.Header>
+            </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame"></Frame>
     </DockPanel>

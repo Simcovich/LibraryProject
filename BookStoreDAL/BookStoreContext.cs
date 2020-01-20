@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -13,6 +8,7 @@ namespace DAL
         public BookStoreContext(DbContextOptions options) : base(options)
         {
         }
+
         public DbSet<AbstractItem> Items { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -20,6 +16,7 @@ namespace DAL
         public DbSet<AbstractItemGenre> ItemGenres { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Journal> Journals { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AbstractItemGenre>()
@@ -33,14 +30,13 @@ namespace DAL
                 .WithMany(g => g.ItemGenres)
                 .HasForeignKey(ig => ig.GenreId);
             modelBuilder.Entity<Genre>().HasData(
-                new Genre() {Id=1, Name = "Action" },
-                new Genre() {Id=2, Name = "Comedy" }
+                new Genre() { Id = 1, Name = "Action" },
+                new Genre() { Id = 2, Name = "Comedy" }
             );
             modelBuilder.Entity<Publisher>().HasData(
                 new Publisher() { Id = 1, Name = "Ran Forrest" });
             modelBuilder.Entity<Author>().HasData(
-                new Author() { Id = 1, Name = "Jon Doe", PenName="JD"});
+                new Author() { Id = 1, Name = "Jon Doe", PenName = "JD" });
         }
     }
-
 }
