@@ -79,8 +79,8 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox PreviewTextInput="TextBox_PreviewIntTextInput" Text="{Binding Stock}"  Grid.Row="5" Grid.Column="1"></TextBox>
-        <TextBox PreviewTextInput="TextBox_PreviewDecimalTextInput" Text="{Binding Price}" Grid.Row="6" Grid.Column="1"></TextBox>
+        <TextBox  Text="{Binding Stock}"  Grid.Row="5" Grid.Column="1"></TextBox>
+        <TextBox  Text="{Binding Price}" Grid.Row="6" Grid.Column="1"></TextBox>
         <DatePicker SelectedDate="{Binding PrintDate}" Grid.Row="7" Grid.Column="1"></DatePicker>
         <TextBox Text="{Binding Description}" Grid.Row="8" Grid.Column="1"></TextBox>
     </Grid>

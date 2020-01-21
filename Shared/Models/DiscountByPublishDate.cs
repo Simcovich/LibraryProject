@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Shared.Models
 {
     public class DiscountByPublishDate : AbstractDiscount
     {
-        private DateTime _publishDate;
-        public DiscountByPublishDate(DateTime publishDate, DateTime startDate, DateTime endDate, float percent) : base(startDate, endDate, percent)
+        public DateTime PublishedDate { get; set; }
+
+        public DiscountByPublishDate(DateTime publishDate, DateTime startDate, DateTime endDate, decimal percent) : base(startDate, endDate, percent)
         {
-            _publishDate = publishDate;
+            PublishedDate = publishDate;
         }
+
+        private DiscountByPublishDate()
+        { }
+
         public override bool IsDiscountApplicable(AbstractItem item)
         {
-            return item.PrintDate.CompareTo(_publishDate) <= 0;
+            return item.PrintDate.CompareTo(PublishedDate) <= 0;
         }
     }
 }

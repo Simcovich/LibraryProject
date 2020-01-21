@@ -46,11 +46,11 @@ namespace LibraryProjectClient
             SimpleIoc.Default.Register<IAuthorService, AuthorService>();
             SimpleIoc.Default.Register<IGenreService, GenreService>();
             SimpleIoc.Default.Register<ISearchService, SearchService>();
-            //  SimpleIoc.Default.Register <IDiscountService,DiscountService> ();
+            SimpleIoc.Default.Register<IDiscountService, DiscountService>();
             SimpleIoc.Default.Register<IPublisherService, PublisherService>();
             SimpleIoc.Default.Register<IJournalService, JournalService>();
             SimpleIoc.Default.Register<IMessageService, MessageService>();
-
+            SimpleIoc.Default.Register<IDiscountRepository, DiscountRepository>();
             SetupNavigation();
             ConfigureLogger();
         }
@@ -65,8 +65,11 @@ namespace LibraryProjectClient
             navigationService.Configure("AddAuthor", new Uri("./Pages/AddAuthor.xaml", UriKind.Relative));
             navigationService.Configure("AddBook", new Uri("./Pages/AddBook.xaml", UriKind.Relative));
             navigationService.Configure("AddJournal", new Uri("./Pages/AddJournal.xaml", UriKind.Relative));
+            navigationService.Configure("AddDiscount", new Uri("./Pages/AddDiscount.xaml", UriKind.Relative));
+            navigationService.Configure("SearchPage", new Uri("./Pages/SearchPage.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IModernNavigationService>(() => navigationService);
         }
+
         private void ConfigureLogger()
         {
             var log = new LoggerConfiguration().WriteTo.File("./LogFiles/log-file.txt").CreateLogger();

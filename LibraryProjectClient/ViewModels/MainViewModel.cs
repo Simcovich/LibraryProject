@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Windows.Input;
 
 namespace LibraryProjectClient.ViewModels
@@ -18,8 +19,12 @@ namespace LibraryProjectClient.ViewModels
             AuthorNavigationCommand = new RelayCommand(ShowAuthor);
             AddBookNavigationCommand = new RelayCommand(ShowBookCreate);
             AddJournalNavigationCommand = new RelayCommand(ShowJournalCreate);
+            AddDiscountNavigationCommand = new RelayCommand(ShowDiscountCreate);
+            SearchNavigationCommand = new RelayCommand(ShowSearch);
         }
 
+
+        public ICommand SearchNavigationCommand { get; set; }
         public ICommand JournalsNavigationCommand { get; set; }
         public ICommand BooksNavigationCommand { get; set; }
         public ICommand AuthorNavigationCommand { get; set; }
@@ -27,6 +32,12 @@ namespace LibraryProjectClient.ViewModels
         public ICommand PublisherNavigationCommand { get; set; }
         public ICommand AddBookNavigationCommand { get; set; }
         public ICommand AddJournalNavigationCommand { get; set; }
+        public ICommand AddDiscountNavigationCommand { get; set; }
+        private void ShowSearch()
+        {
+            _modernNavigationService.NavigateTo("SearchPage");
+        }
+
         private void ShowBooks()
         {
             _modernNavigationService.NavigateTo("Books");
@@ -51,13 +62,20 @@ namespace LibraryProjectClient.ViewModels
         {
             _modernNavigationService.NavigateTo("AddGenre");
         }
+
         private void ShowBookCreate()
         {
             _modernNavigationService.NavigateTo("AddBook");
         }
+
         private void ShowJournalCreate()
         {
             _modernNavigationService.NavigateTo("AddJournal");
+        }
+
+        private void ShowDiscountCreate()
+        {
+            _modernNavigationService.NavigateTo("AddDiscount");
         }
     }
 }

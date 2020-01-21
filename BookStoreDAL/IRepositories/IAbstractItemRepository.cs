@@ -1,10 +1,11 @@
 ﻿using Shared.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DAL.IRepositories
 {
     public interface IAbstractItemRepository
     {
-        IEnumerable<AbstractItem> GetAllItems();
+        Task<IEnumerable<AbstractItem>> GetItemsByTitleAsync(string value);
     }
 }

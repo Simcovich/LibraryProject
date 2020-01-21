@@ -32,6 +32,12 @@
             <MenuItem Command="{Binding AddBookNavigationCommand}">
                 <MenuItem.Header>Add Book</MenuItem.Header>
             </MenuItem>
+            <MenuItem Command="{Binding AddDiscountNavigationCommand}">
+                <MenuItem.Header>Add Discount</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Command="{Binding SearchNavigationCommand}">
+                <MenuItem.Header>Search</MenuItem.Header>
+            </MenuItem>
         </Menu>
         <Frame x:Name="MainFrame"></Frame>
     </DockPanel>

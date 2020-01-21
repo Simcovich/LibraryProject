@@ -3,11 +3,11 @@
 namespace LibraryProjectClient.Pages
 {
     /// <summary>
-    /// Interaction logic for AddJournal.xaml
+    /// Interaction logic for AddDiscount.xaml
     /// </summary>
-    public partial class AddJournal : Page
+    public partial class AddDiscount : Page
     {
-        public AddJournal()
+        public AddDiscount()
         {
             InitializeComponent();
         }

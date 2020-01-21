@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStoreDAL.Migrations
 {
     [DbContext(typeof(BookStoreContext))]
-    partial class BookStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20200121082211_added-discounts-migration")]
+    partial class addeddiscountsmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,8 +35,8 @@ namespace BookStoreDAL.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Percent")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Percent")
+                        .HasColumnType("real");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -184,18 +186,12 @@ namespace BookStoreDAL.Migrations
                 {
                     b.HasBaseType("Shared.Models.AbstractDiscount");
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
                     b.HasDiscriminator().HasValue("DiscountByAuthor");
                 });
 
             modelBuilder.Entity("Shared.Models.DiscountByGenre", b =>
                 {
                     b.HasBaseType("Shared.Models.AbstractDiscount");
-
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("DiscountByGenre");
                 });
@@ -204,18 +200,12 @@ namespace BookStoreDAL.Migrations
                 {
                     b.HasBaseType("Shared.Models.AbstractDiscount");
 
-                    b.Property<DateTime>("PublishedDate")
-                        .HasColumnType("datetime2");
-
                     b.HasDiscriminator().HasValue("DiscountByPublishDate");
                 });
 
             modelBuilder.Entity("Shared.Models.DiscountByPublisher", b =>
                 {
                     b.HasBaseType("Shared.Models.AbstractDiscount");
-
-                    b.Property<int>("PublisherId")
-                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("DiscountByPublisher");
                 });

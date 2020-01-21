@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Shared.Models;
 using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BL.API
 {
-    public interface IDiscountservice
+    public interface IDiscountService
     {
-        Discount
+        Task<List<AbstractDiscount>> GetDiscountsAsync();
+
+        Task AddDiscountAsync(AbstractDiscount discount);
+
+        void ApplyDiscount(ICollection<AbstractItem> items);
     }
 }

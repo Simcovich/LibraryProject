@@ -12,9 +12,11 @@ namespace BL.Services
     public class JournalService : ServiceBase, IJournalService
     {
         private IJournalRepository _repo;
+        private IDiscountService _discountService;
 
-        public JournalService(ILogger logger, IJournalRepository repo) : base(logger)
+        public JournalService(ILogger logger, IJournalRepository repo, IDiscountService discountService) : base(logger)
         {
+            _discountService = discountService;
             _repo = repo;
         }
 
@@ -36,6 +38,7 @@ namespace BL.Services
             try
             {
                 var journals = await _repo.GetAllJournalsAsync();
+                _discountService.ApplyDiscount(journals.Cast<AbstractItem>().ToList());
                 return journals.ToList();
             }
             catch (DataException e)

@@ -14,17 +14,19 @@ namespace Shared.Models
         public decimal Price { get; set; }
 
         [NotMapped]
-        public double Discount { get; set; }
+        public decimal Discount { get; set; }
 
         public ICollection<AbstractItemGenre> ItemGenres { get; set; }
+
         [Required]
         public Publisher Publisher { get; set; }
 
-        [Required,DataType(DataType.Date)]
+        [Required, DataType(DataType.Date)]
         public DateTime PrintDate { get; set; }
 
-        [Required,DataType(DataType.MultilineText)]
+        [Required, DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
         [Required]
         public int Stock { get; set; }
     }

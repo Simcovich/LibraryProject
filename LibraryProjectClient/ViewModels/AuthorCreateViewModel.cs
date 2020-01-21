@@ -1,6 +1,7 @@
 ﻿using BL.API;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Shared.Models;
 using System.Windows.Input;
 
@@ -25,6 +26,7 @@ namespace LibraryProjectClient.ViewModels
             var author = new Author() { Name = Name, PenName = PenName };
             await _service.AddAuthorAsync(author);
             Name = "";
+            Messenger.Default.Send<Author>(author);
         }
     }
 }

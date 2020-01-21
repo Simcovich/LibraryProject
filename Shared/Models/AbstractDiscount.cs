@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Shared.Models
 {
@@ -8,13 +6,19 @@ namespace Shared.Models
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public float Percent { get; set; }
+        public decimal Percent { get; set; }
+
         public abstract bool IsDiscountApplicable(AbstractItem item);
-        protected AbstractDiscount(DateTime startDate, DateTime endDate, float percent)
+
+        protected AbstractDiscount(DateTime startDate, DateTime endDate, decimal percent)
         {
             StartDate = startDate;
             EndDate = endDate;
             Percent = percent;
+        }
+
+        protected AbstractDiscount()
+        {
         }
     }
 }

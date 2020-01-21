@@ -1,6 +1,7 @@
 ﻿using BL.API;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Shared.Models;
 using System.Windows.Input;
 
@@ -24,6 +25,7 @@ namespace LibraryProjectClient.ViewModels
             var genre = new Genre() { Name = Name };
             await _service.AddGenreAsync(genre);
             Name = "";
+            Messenger.Default.Send<Genre>(genre);
         }
     }
 }

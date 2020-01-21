@@ -48,6 +48,23 @@ namespace LibraryProjectClient.ViewModels
             Command = new RelayCommand(AddBook);
             _modernNavigationService = modernNavigationService;
             _messageService = messageService;
+            Messenger.Default.Register<Genre>(this, AddGenre);
+            Messenger.Default.Register<Publisher>(this, onPublisherAdd);
+            Messenger.Default.Register<Author>(this, AddAuthor);
+        }
+
+        private void onPublisherAdd(Publisher publisher)
+        {
+            PublisherList.Add(publisher);
+        }
+
+        private void AddGenre(Genre genre)
+        {
+            GenreList.Add(genre);
+        }
+        private void AddAuthor(Author author)
+        {
+            AuthorList.Add(author);
         }
 
         public ObservableCollection<Genre> GenreList { get => genreList; set => Set(ref genreList, value); }

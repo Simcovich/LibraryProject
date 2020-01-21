@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using LibraryProjectClient.Pages;
 using Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Windows;
 
 namespace LibraryProjectClient.ViewModels
 {
@@ -31,8 +31,9 @@ namespace LibraryProjectClient.ViewModels
         private Genre[] genres;
         private IModernNavigationService _modernNavigationService;
         private IMessageService _messageService;
-        public JournalCreateViewModel(IJournalService journalService, IPublisherService publisherService, IGenreService genreService, 
-            IModernNavigationService modernNavigationService,IMessageService messageService)
+
+        public JournalCreateViewModel(IJournalService journalService, IPublisherService publisherService, IGenreService genreService,
+            IModernNavigationService modernNavigationService, IMessageService messageService)
         {
             _journalService = journalService;
             _publisherService = publisherService;
@@ -41,12 +42,18 @@ namespace LibraryProjectClient.ViewModels
             Genres = new Genre[3];
             GetGenresAsync();
             GetPublishersAsync();
+            Messenger.Default.Register<Genre>(this, AddGenre);
+            Messenger.Default.Register<Publisher>(this, onPublisherAdd);
             Command = new RelayCommand(AddJournal);
             _modernNavigationService = modernNavigationService;
             _messageService = messageService;
-
         }
 
+
+        private void onPublisherAdd(Publisher publisher)
+        {
+            PublisherList.Add(publisher);
+        }
         public ObservableCollection<Genre> GenreList { get => genreList; set => Set(ref genreList, value); }
         public ObservableCollection<Publisher> PublisherList { get => publisherList; set => Set(ref publisherList, value); }
         public string Title { get => title; set => Set(ref title, value); }
@@ -114,6 +121,7 @@ namespace LibraryProjectClient.ViewModels
                 _messageService.ShowMessage(e.InnerException.Message);
             }
         }
+
         private void ResetForm()
         {
             Title = "";
@@ -125,6 +133,10 @@ namespace LibraryProjectClient.ViewModels
             Stock = 0;
             Genres = new Genre[3];
             Price = 0.0M;
+        }
+        private void AddGenre(Genre genre)
+        {
+            GenreList.Add(genre);
         }
     }
 }

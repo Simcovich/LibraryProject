@@ -9,6 +9,7 @@ namespace DAL
         {
         }
 
+        public DbSet<AbstractDiscount> Discounts { get; set; }
         public DbSet<AbstractItem> Items { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
@@ -16,6 +17,10 @@ namespace DAL
         public DbSet<AbstractItemGenre> ItemGenres { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Journal> Journals { get; set; }
+        public DbSet<DiscountByAuthor> AuthorDiscounts { get; set; }
+        public DbSet<DiscountByGenre> GenreDiscounts { get; set; }
+        public DbSet<DiscountByPublishDate> PublishDateDiscounts { get; set; }
+        public DbSet<DiscountByPublisher> PublisherDiscount { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -14,8 +14,10 @@ namespace LibraryProjectClient.ViewModels
             SimpleIoc.Default.Register<GenreCreateViewModel>();
             SimpleIoc.Default.Register<PublisherCreateViewModel>();
             SimpleIoc.Default.Register<AuthorCreateViewModel>();
+            SimpleIoc.Default.Register<DiscountCreateViewModel>();
+            SimpleIoc.Default.Register<SearchViewModel>();
         }
-
+        public SearchViewModel Search => SimpleIoc.Default.GetInstance<SearchViewModel>();
         public MainViewModel Main => SimpleIoc.Default.GetInstance<MainViewModel>();
         public BookCreateViewModel BookCreate => SimpleIoc.Default.GetInstance<BookCreateViewModel>();
         public BookListViewModel BookList => SimpleIoc.Default.GetInstance<BookListViewModel>();
@@ -24,5 +26,6 @@ namespace LibraryProjectClient.ViewModels
         public AuthorCreateViewModel AuthorCreate => SimpleIoc.Default.GetInstance<AuthorCreateViewModel>();
         public PublisherCreateViewModel PublisherCreate => SimpleIoc.Default.GetInstance<PublisherCreateViewModel>();
         public GenreCreateViewModel GenreCreate => SimpleIoc.Default.GetInstance<GenreCreateViewModel>();
+        public DiscountCreateViewModel DiscountCreate => SimpleIoc.Default.GetInstance<DiscountCreateViewModel>();
     }
 }

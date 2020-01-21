@@ -12,10 +12,14 @@ namespace BL.Services
     public class BookService : ServiceBase, IBookService
     {
         private IBookRepository _repo;
-        public BookService(ILogger logger, IBookRepository repo) : base(logger)
+        private IDiscountService _discountService;
+
+        public BookService(ILogger logger, IBookRepository repo,IDiscountService discountService) : base(logger)
         {
             _repo = repo;
+            _discountService = discountService;
         }
+
         public async Task<Book> AddBookAsync(Book book)
         {
             try
@@ -28,11 +32,13 @@ namespace BL.Services
                 throw new DataException(e.Message);
             }
         }
+
         public async Task<List<Book>> GetAllBooksAsync()
         {
             try
             {
                 var books = await _repo.GetAllBooksAsync();
+                _discountService.ApplyDiscount(books.Cast<AbstractItem>().ToList());
                 return books.ToList();
             }
             catch (DataException e)
